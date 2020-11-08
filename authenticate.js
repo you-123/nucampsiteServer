@@ -16,7 +16,7 @@ exports.getToken = function (user) {
     return jwt.sign(user, config.secretKey, { expiresIn: 3600 });
 };
 exports.verifyAdmin = function (req, res, next) {
-    if (!req.user.admin) {
+    if (!(req.user.username==='admin')) {
         const err = new Error('You are not authorized to perform this operation!');
         err.status = 403;
         return next(err);
